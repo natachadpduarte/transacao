@@ -3,23 +3,8 @@ package org.transacao.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class Transacao {
-    private final String id;
-    private final BigDecimal valor;
-    private final LocalDateTime data;
-
-    public Transacao(String id, BigDecimal valor) {
-        this.id = id;
-        this.valor = valor;
-        this.data = LocalDateTime.now();
-    }
-
-    public BigDecimal getValor() { return valor; }
-    public String getId() { return id; }
-    public LocalDateTime getData() { return data; }
-
-    @Override
-    public String toString() {
-        return "Transacao{id='" + id + "', valor=" + valor + ", data=" + data + "}";
+public record Transacao(String id, BigDecimal valor, TipoTransacao tipo, LocalDateTime data) {
+    public Transacao(String id, BigDecimal valor, TipoTransacao tipo) {
+        this(id, valor, tipo, LocalDateTime.now());
     }
 }

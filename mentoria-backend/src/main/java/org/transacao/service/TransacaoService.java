@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 
 public class TransacaoService {
     private final List<Transacao> transacoes = new ArrayList<>();
-    private static final TransacaoService instancia = new TransacaoService();
+    private static final TransacaoService TransacaoService = new TransacaoService();
 
     private TransacaoService() {}
 
     public static TransacaoService getInstancia() {
-        return instancia;
+        return TransacaoService;
     }
 
     public void adicionarTransacao(Transacao t) {
@@ -28,7 +28,7 @@ public class TransacaoService {
 
     public List<Transacao> filtrarAcimaDe(BigDecimal valorMinimo) {
         return transacoes.stream()
-                .filter(t -> t.getValor().compareTo(valorMinimo) > 0)
+                .filter(t -> t.valor().compareTo(valorMinimo) > 0)
                 .collect(Collectors.toList());
     }
 

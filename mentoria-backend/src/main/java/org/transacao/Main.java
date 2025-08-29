@@ -1,6 +1,7 @@
 package org.transacao;
 
 import org.transacao.factory.TransacaoFactory;
+import org.transacao.model.TipoTransacao;
 import org.transacao.service.TransacaoService;
 import org.transacao.strategy.MediaImpl;
 import org.transacao.strategy.SomaImpl;
@@ -11,9 +12,9 @@ public class Main {
     public static void main(String[] args) {
         TransacaoService servico = TransacaoService.getInstancia();
 
-        servico.adicionarTransacao(TransacaoFactory.criarTransacao("T1", new BigDecimal("100.50")));
-        servico.adicionarTransacao(TransacaoFactory.criarTransacao("T2", new BigDecimal("250.75")));
-        servico.adicionarTransacao(TransacaoFactory.criarTransacao("T3", new BigDecimal("50.25")));
+        servico.adicionarTransacao(TransacaoFactory.criarTransacao("T1", new BigDecimal("100.50"), TipoTransacao.SAQUE));
+        servico.adicionarTransacao(TransacaoFactory.criarTransacao("T2", new BigDecimal("250.75"), TipoTransacao.DEPOSITO));
+        servico.adicionarTransacao(TransacaoFactory.criarTransacao("T3", new BigDecimal("50.25"), TipoTransacao.SAQUE));
 
         System.out.println("Total: " + servico.calcular(new SomaImpl()));
 
